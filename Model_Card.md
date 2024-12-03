@@ -2,13 +2,13 @@
 This is a fine tuned BERT model to performance the regression task of predicting average book rating from titles.
 
 ### Model Details
-- **Developed by:** {{ David Qi | default("[More Information Needed]", true)}}
+- **Developed by:** David Qi
 - **Model Type**: Transformer-based Regression Model
 - **Base Model**: `bert-base-uncased`
 - **Fine-Tuning Dataset**: Custom dataset (`cleaned_book_data`) containing book titles and their average ratings.
 - **Task**: Regression (predicting a continuous value for the average rating of a book)
 - **Framework**: PyTorch with HuggingFace Transformers
-- **License:** {{ MIT  | default("[More Information Needed]", true)}}
+- **License:** MIT
 
 ### Model Description
 This model is a fine-tuned version of BERT (`bert-base-uncased`) designed to predict the **average book rating** based on the **title** of children's book. It adapts the BERT architecture for a regression task by modifying the final classification layer to output a single continuous value instead of class probabilities.
@@ -57,11 +57,11 @@ This model is a fine-tuned version of BERT (`bert-base-uncased`) designed to pre
 
 Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
 
-- **Hardware Type:** {{ T4 | default("[More Information Needed]", true)}}
-- **Hours used:** {{ 5 | default("[More Information Needed]", true)}}
-- **Cloud Provider:** {{ Google CoLab | default("[More Information Needed]", true)}}
-- **Compute Region:** {{ northamerica_northeast | default("[More Information Needed]", true)}}
-- **Carbon Emitted:** {{ 0.01 kg eq. | default("[More Information Needed]", true)}}
+- **Hardware Type:** T4
+- **Hours used:** 5
+- **Cloud Provider:** Google CoLab
+- **Compute Region:** northamerica_northeast 
+- **Carbon Emitted:** 0.01 kg eq.
 
 ### How to Use
 ```python
