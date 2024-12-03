@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://https://github.com/UTDQi/children_book_review"
 date: today
 date-format: long
-abstract: ""
+abstract: "This study examines the impact of first impressions on children's book ratings, focusing on how attributes such title, page count, and review count influence ratings. Using data from Goodreads and both simple linear regression and fine-tuned transformer models, we found that book titles alone explained 7.94% of the variation in ratings, indicating the significance of first impressions. This study provide support for previous studies in concluding that children may favor the theme of excitement and celebration, which are useful in building recommendation system and selecting optimal titles."
 format: pdf
 number-sections: true
 toc: true
@@ -41,7 +41,7 @@ book_data =book_data %>% mutate( publication_day_in_year =   as.integer(format(a
 # Introduction {#sec-intro}
 The rise of user-generated content has transformed how consumers interact with media, especially when it come to book ratings. These ratings serve as an indirect reflection of a book's quality and readers' perceptions, serving as one of the few pieces of information that help potential readers to form initial impressions. As they play a crucial role in guiding decisions, consequently, it has become standard practice to use book ratings as a predictor variable in recommendation systems, serving as a key indicator of how much a reader enjoys a book. 
 
-However, children's books, as a unique genre, present distinct dynamics in the realm of user-generated ratings and recommendation systems. Unlike adult literature, children rarely contribute directly to ratings or reviews. Instead, parents, educators, and caregivers typically provide feedback. Which have made is difficult to create recommendation systems [@judgecover]. And since many reviewer are not direct reader of the book, we hypothysize their rating may subject to greater bias from first impression. 
+However, children's books, as a unique genre, present distinct dynamics in the realm of user-generated ratings and recommendation systems. Unlike adult literature, children rarely contribute directly to ratings or reviews. Instead, parents, educators, and caregivers typically provide feedback. Which have made is difficult to create recommendation systems [@judgecover]. And since many reviewer are not direct reader of the book, we hypothesize their rating may subject to greater bias from first impression. 
 
 This paper aims to use simple linear regression models and fine-tuned pretrained transformer models, by analyzing children's book data from Goodreads[@goodreaddata1;@goodreaddata2], to uncover how much such first impression will influence the rating of a book. The study provides guidance for author and publishers to create attractive titles, identifies traits in children's book rating, which may be useful for designing recommendation systems. Where these recommendation systems, when it comes to children, may be difficult to create due to lack of user generated data, and will likely benefit from understanding provided by this study.
 
