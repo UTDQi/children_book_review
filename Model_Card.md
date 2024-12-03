@@ -24,7 +24,7 @@ This model is a fine-tuned version of BERT (`bert-base-uncased`) designed to pre
 - **Optimizer**: AdamW
 - **Learning Rate**: `0.000013`
 - **Loss Function**: Mean Squared Error (MSE)
-- **Epochs**: `3`
+- **Epochs**: `2`
 - **Batch Size**: `16`
 - **Device**: GPU (CUDA)
 
