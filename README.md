@@ -1,8 +1,7 @@
-# Paper On Children's book
+# Do We Judge Children's Books by Their Covers? Exploring Title, Exclamation Marks, and Reviewer Bias
 
 ## Overview
-This repository is implemented by R and python, including all necessary code, data, model and analysis used to analysis children's book rating from goodreads.com.
-
+This repository is implemented by R and python, including all necessary code, data, model and analysis used to analysis children's book rating from goodreads.com. 
 
 ## File Structure
 
