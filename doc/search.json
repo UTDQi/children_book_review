@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Do We Judge Children’s Books by Their Covers?",
+    "section": "",
+    "text": "This page is for publishing the paper “Do We Judge Children’s Books by Their Covers? Exploring Title, Exclamation Marks, and Reviewer Bias”\nThe full paper can be downloaded here"
+  },
+  {
+    "objectID": "Model_Card.html",
+    "href": "Model_Card.html",
+    "title": "Do We Judge Children's Books by Their Covers? ",
+    "section": "",
+    "text": "This is a fine tuned BERT model to performance the regression task of predicting average book rating from titles.\n\n\n\nDeveloped by: David Qi\nModel Type: Transformer-based Regression Model\nBase Model: bert-base-uncased\nFine-Tuning Dataset: Custom dataset (cleaned_book_data) containing book titles and their average ratings.\nTask: Regression (predicting a continuous value for the average rating of a book)\nFramework: PyTorch with HuggingFace Transformers\nLicense: MIT\n\n\n\n\nThis model is a fine-tuned version of BERT (bert-base-uncased) designed to predict the average book rating based on the title of children’s book. It adapts the BERT architecture for a regression task by modifying the final classification layer to output a single continuous value instead of class probabilities.\n\n\n\n\nPrimary Use Case: Predicting the average rating for a book given its title.\nIntended Users: Researchers wishing to develop a book recommendation systems or want to gain understanding of children’s preference for books.\n\n\n\n\n\nPrediction of rating for books of other languages, genre thaan English Children’s books\n\n\n\n\n\nOptimizer: AdamW\nLearning Rate: 0.000013\nLoss Function: Mean Squared Error (MSE)\nEpochs: 2\nBatch Size: 16\nDevice: GPU (CUDA)\n\n\n\n\n\nDataset Size: 45583\nFeatures Used:\n\ntitle: The title of the book (text input).\naverage_rating: The target rating (continuous value) used for regression.\n\n\n\n\n\n\nTraining Loss (Final): 0.1236\nValidation Loss (Final): 0.1219\nTest Loss (MSE): 0.1271\n\n\n\n\n\nMean Squared Error (MSE): 0.1271\nR Squared: 0.0794\n\n\n\n\n\nDataset Limitations: The model’s performance is highly dependent on the quality and diversity of the dataset. It may not generalize well to book titles outside of the training domain. For example for genre other than children’s book.\nInput Constraints: The model only uses the book title as input, meaning it doesn’t account for other potentially useful metadata like author, genre, or publication year.\n\n\n\n\n\nBiases in Data: The dataset might contain biases based on the popularity or language of certain types of books, which could affect the model’s predictions.\nPotential Misuse: Since the model predicts ratings solely based on the title, it may misrepresent actual book quality or reader satisfaction."
+  },
+  {
+    "objectID": "Model_Card.html#model-card-fine-tuned-bert-for-book-rating-prediction",
+    "href": "Model_Card.html#model-card-fine-tuned-bert-for-book-rating-prediction",
+    "title": "Do We Judge Children's Books by Their Covers? ",
+    "section": "",
+    "text": "This is a fine tuned BERT model to performance the regression task of predicting average book rating from titles.\n\n\n\nDeveloped by: David Qi\nModel Type: Transformer-based Regression Model\nBase Model: bert-base-uncased\nFine-Tuning Dataset: Custom dataset (cleaned_book_data) containing book titles and their average ratings.\nTask: Regression (predicting a continuous value for the average rating of a book)\nFramework: PyTorch with HuggingFace Transformers\nLicense: MIT\n\n\n\n\nThis model is a fine-tuned version of BERT (bert-base-uncased) designed to predict the average book rating based on the title of children’s book. It adapts the BERT architecture for a regression task by modifying the final classification layer to output a single continuous value instead of class probabilities.\n\n\n\n\nPrimary Use Case: Predicting the average rating for a book given its title.\nIntended Users: Researchers wishing to develop a book recommendation systems or want to gain understanding of children’s preference for books.\n\n\n\n\n\nPrediction of rating for books of other languages, genre thaan English Children’s books\n\n\n\n\n\nOptimizer: AdamW\nLearning Rate: 0.000013\nLoss Function: Mean Squared Error (MSE)\nEpochs: 2\nBatch Size: 16\nDevice: GPU (CUDA)\n\n\n\n\n\nDataset Size: 45583\nFeatures Used:\n\ntitle: The title of the book (text input).\naverage_rating: The target rating (continuous value) used for regression.\n\n\n\n\n\n\nTraining Loss (Final): 0.1236\nValidation Loss (Final): 0.1219\nTest Loss (MSE): 0.1271\n\n\n\n\n\nMean Squared Error (MSE): 0.1271\nR Squared: 0.0794\n\n\n\n\n\nDataset Limitations: The model’s performance is highly dependent on the quality and diversity of the dataset. It may not generalize well to book titles outside of the training domain. For example for genre other than children’s book.\nInput Constraints: The model only uses the book title as input, meaning it doesn’t account for other potentially useful metadata like author, genre, or publication year.\n\n\n\n\n\nBiases in Data: The dataset might contain biases based on the popularity or language of certain types of books, which could affect the model’s predictions.\nPotential Misuse: Since the model predicts ratings solely based on the title, it may misrepresent actual book quality or reader satisfaction."
+  },
+  {
+    "objectID": "Model_Card.html#environmental-impact",
+    "href": "Model_Card.html#environmental-impact",
+    "title": "Do We Judge Children's Books by Their Covers? ",
+    "section": "Environmental Impact",
+    "text": "Environmental Impact\n\nCarbon emissions can be estimated using the Machine Learning Impact calculator presented in Lacoste et al. (2019).\n\nHardware Type: T4\nHours used: 5\nCloud Provider: Google CoLab\nCompute Region: northamerica_northeast\nCarbon Emitted: 0.01 kg eq.\n\n\nHow to Use\nfrom transformers import BertTokenizer, BertForSequenceClassification\nimport torch\n\n# Load tokenizer and model\ntokenizer = BertTokenizer.from_pretrained('bert-base-uncased')\nmodel = BertForSequenceClassification.from_pretrained('path_to_fine_tuned_model', num_labels=1)\nmodel.eval()\n\n# Example input\ntitle = \"The Catcher in the Rye\"\ninputs = tokenizer(title, return_tensors=\"pt\", max_length=128, truncation=True, padding=\"max_length\")\n\n# Predict average rating\nwith torch.no_grad():\n    outputs = model(**inputs)\n    predicted_rating = outputs.logits.item()\n\nprint(f\"Predicted Rating: {predicted_rating:.2f}\")"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Do We Judge Children’s Books by Their Covers?",
+    "section": "",
+    "text": "This page is for publishing the paper “Do We Judge Children’s Books by Their Covers? Exploring Title, Exclamation Marks, and Reviewer Bias”\nThe full paper can be downloaded here"
+  },
+  {
+    "objectID": "index.html#file-structure",
+    "href": "index.html#file-structure",
+    "title": "Do We Judge Children’s Books by Their Covers?",
+    "section": "File Structure",
+    "text": "File Structure\nThe repo is structured as:\n\ndata/00-simulated_data contains the simulated dataset.\ndata/01-raw_data contains raw data downloaded from https://mengtingwan.github.io/data/goodreads (not uploaded due to licensing concerns, but can be dowloaded using 02-download_clean_model_data by user)\ndata/02-analysis_data contains the cleaned dataset that was constructed.\nmodels contains the rds file for linear regression and transformer model. (Transformer model is too large(&gt;100m) to be uploaded, the code in 02-download_clean_model_data is deterministic, running this code will produce the same model)\nother contains details about LLM chat interactions, and sketches.\npaper includes the paper’s PDF and the files used to create it, such as the Quarto manuscript and reference bibliography file.\nscripts contains the R scripts used to simulate, download, clean, test data. Also contain analysis data and data modeling."
+  },
+  {
+    "objectID": "index.html#statement-on-llm-usage",
+    "href": "index.html#statement-on-llm-usage",
+    "title": "Do We Judge Children’s Books by Their Covers?",
+    "section": "Statement on LLM usage",
+    "text": "Statement on LLM usage\nSome of the code was written with the help of the ChatGPT-4o model, which also helped with language paraphrase. Other/llm_usage/usage.txt contains the entire chat history."
+  },
+  {
+    "objectID": "index.html#repository",
+    "href": "index.html#repository",
+    "title": "Do We Judge Children’s Books by Their Covers?",
+    "section": "Repository",
+    "text": "Repository\nRepository is located at https://github.com/UTDQi/children_book_review."
+  }
+]
