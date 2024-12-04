@@ -217,19 +217,19 @@ ggplot(book_data, aes(x = as.numeric(num_pages))) +
 ```
 ## Unused Varibles
 There are certain variables that could be drawn from the dataset, which may fit the topic of this paper, but will not be used for modeling. In this section we justify why they are not selected. 
+
 ### Publication Month
 The effect of publication Month have been fully covered by days in a year. While the latter is more accurate. 
 
 ### Rating Count
 The total number of ratings is an important indicator of book popularity. However including it does not improve the model by much, and it can be captured by text review to rating ratio, along with number of text reviews. So we did not inculde the varible for simplicity. 
 
-
 # Model {#sec-model}
 
-# Linear Regression Model 
+## Linear Regression Model 
 We will first attempt to use linear regression model to predict the average rating of a book. 
 
-## Model set-up
+### Model set-up
 For each book, we assumed they are being sampled similarly. \
 Let the rating of a book be denoted by $R$. 
 Then we will use linear regression model: 
@@ -253,7 +253,7 @@ The model diagnostics are in [Appendix 2](#appendix2)
 
 
 
-# Transformer Model
+## Transformer Model
 To analysis how title may affect the rating of a book, we use a transformer model to process the title. To implement this model, we used python[@citePython] with supporting packages pytorch[@NEURIPS2019_9015], Scikit-learn[@pedregosa2011scikit], transformers[@wolf-etal-2020-transformers], tqdm[@tqdm], numpy[@harris2020array], and pandas[@mckinney2010data].
 
 Bidirectional Encoder Representations from Transformers (BERT) [@devlin2019bert] is a language model built on the Transformer encoder architecture, which has been pretrained on text sequence from Wikipedia and BookCorpus [@zhu2015aligning].
@@ -278,40 +278,69 @@ We then choose this model for further discussion.
  
 # Results {#sec-results}
 
-### Linear Regression Model
+## Linear Regression Model
 
 [@tbl-model] are the model coefficients fitted. The model have adjusted R-squared 0.038, showing the model have limited predictive power. However, the F-statistic(426 on 6 and 65111 Degrees of Freedom) and Pr(>|t|) provide concrete evidence that these first impression variables that we draw out have influence on average rating. Discussion of each variable is in the [Discussion ](@sec-discussion) section. 
 
 ```{r}
 #| label: tbl-model
-#| tbl-cap: Model summary
+#| tbl-cap: Linear Regression Model summary
 #| include: true
 #| echo: false
 #| warning: false
 #| message: false
 
-library(knitr)
 
-model_summary = summary(model)
+model_summary <- summary(model)
 
-coef_table <- as.data.frame(model_summary$coefficients)
 
-# Apply formatC to limit to 3 significant figures
-coef_table <- as.data.frame(lapply(coef_table, function(x) formatC(x, format = "f", digits = 4)))
+coefficients <- as.data.frame(model_summary$coefficients)
 
-colnames(coef_table) <- c("Estimate", "Standard Error", "t value", "p value")
 
-kable(coef_table)
+
+coefficients <- coefficients %>%
+  mutate_all(~ signif(. , 3))
+
+# Disable scientific notation for 'Estimate' and 'Std. Error' columns
+coefficients$Estimate <- format(coefficients$Estimate, scientific = FALSE)
+coefficients$`Std. Error` <- format(coefficients$`Std. Error`, scientific = FALSE)
+
+
+# Rename the predictor variables
+rownames(coefficients) <- c("(Intercept)", "Publication Day", "Publication Year", "Number of Pages", "Number of Text Reviews", "Text Review Ratio", "Publication Day in The Year")
+colnames(coefficients) = c("	Estimate", "Standard Error", "T value","P value")
+
+kable(coefficients)
 ```
-#### Note on Publication Year
+### Note on Publication Year
 This variable's effect is not statistically significant, which requires justification for its inclusion in the model. The rationale lies in its role as an underlying factor influencing the Text Reviews Ratio, a key variable associated with higher ratings. There is a clear trend: as the Publication Year approaches the present, the Text Reviews Ratio tends to increase on average, indicating higher levels of reader engagement. This suggests that more recent publications garner greater textual interaction, which, in turn, may positively impact overall ratings.
 
 
 
 ## BERT regression Model prediction
-After some testing, we have decided to train this model on the hyperparameter setting of: MAX_LEN = 30, BATCH_SIZE = 16, EPOCHS = 2, LEARNING_RATE = 0.000013. The model have resulted a mean squared error loss of 0.1271 and R^2 = 0.0794 on test dataset, with mean squared error of 0.1219 on validation dataset. This means that the model explains 7.94% of the variation in average ratings based solely on the book title, suggesting the influence of first impressions on how books are rated.
+After some testing, we have decided on a final model.[@tbl-BERT] shows the final hyperparemeter settings. The model have resulted a mean squared error loss of 0.1271 and R squared of 0.0794 on test dataset, with mean squared error of 0.1219 on validation dataset. This means that the model explains 7.94% of the variation in average ratings based solely on the book title, suggesting the influence of first impressions on how books are rated.
 
 We have also tested with modified test data, by changing periods into exclamation marks, or removing every "the" from the title. The model suggests that by replacing every period with exclamation marks, the average rating of the test set would increase by 0.026, and by removing every "the", the rating drops by 0.012. 
+
+```{r}
+#| label: tbl-BERT
+#| tbl-cap: hyperparameter setting
+#| include: true
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create a data frame with the hyperparameter settings
+hyperparameters <- data.frame(
+  Hyperparameter = c("MAX_LEN", "BATCH_SIZE", "EPOCHS", "LEARNING_RATE"),
+  Value = c(30, 16, 2, 0.000013)
+)
+
+hyperparameters$Value[4] <- format(hyperparameters$Value[4], scientific = FALSE)
+
+# Display the table using kable from knitr
+kable(hyperparameters)
+```
 
 
 
@@ -385,8 +414,11 @@ In the [discussion](@sec-discussion) section, we touched on using surveys to val
 
 ## Objective
 We want to validate and measure the actual effects of three of our main findings:
+
 1. Books expressing themes such as celebration, excitement, gratitude, cheerful, and smile are preferred. While exclamation in the title hints this. 
+
 2. Higher number of pages create positive attitude toward the book.
+
 3. High level of community engagement create positive attitude toward the book.
 
 ## Sampling Approach
@@ -397,6 +429,7 @@ We will use the age groups used by @judgecover to test the alignment of results,
 
 ## Incentives
 We will offer the following incentives to complete the survey:
+
 1. A letter explaining the propose, theme and length and possible questions of the survey. 
 
 2. A $20 reward for completing the survey questionnaire. 
@@ -407,11 +440,17 @@ These incentives matches the outline given by @stantcheva2023surveys. And may in
 
 ## Survey Structure 
 The survey will begin with an introduction explaining its purpose, scope, and confidentiality terms. The participant may continue if they and their guardian fully understands and agrees to the terms and conditions. 
+
 The survey questions will be grouped logically, for children it will covering the topics below:
+
 - Demographics: Collecting background information on participant.
+
 - Reading practices: Amount of reading done by participant lately, which genres and theme is the participant in favor of. Question regarding book length will be in this section. 
+
 - Understanding of Rating: Should book rating reflect experiences apart from reading, such as community engagement?
+
 - Rating of Sample Titles: Several random titles are provided for the participants to rate their first impression. Questions will randomly include real book titles, and book titles with period replace by exclamation marks.
+
 For adults, the "reading practices" section will be replaces by a section collecting the participant's experience with children's book. And the Understanding of Rating will be from a adult perspective, asking questions such as "Will you write reviews based on your chlidren's fondness of the book?"
 
 
@@ -439,7 +478,7 @@ As we are interviewing children, ensuring the ethical integrity of the survey is
 
 By addressing these ethical considerations, the survey ensures the protection and well-being of participants while maintaining the integrity and reliability of the research findings.
 
-A sample survey can be found at: https://docs.google.com/forms/d/e/1FAIpQLSeIMsn9aL4JJsZOZtFYFiE_HoZZbaU_g5v84bLXZpoZKjtNpQ/viewform?usp=sf_link.Thank @stantcheva2023surveys and @chen2018methods's paper in providing valuble gudience in creating survey.
+A sample survey can be found at: [Link](https://docs.google.com/forms/d/e/1FAIpQLSeIMsn9aL4JJsZOZtFYFiE_HoZZbaU_g5v84bLXZpoZKjtNpQ/viewform?usp=sf_link).Thank @stantcheva2023surveys and @chen2018methods's paper in providing valuable guidance in creating survey.
 
 
 # Appendix 2: Model diagnostics {#appendix2}
