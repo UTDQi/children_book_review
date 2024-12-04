@@ -17,6 +17,7 @@ The repo is structured as:
 -   `scripts` contains the R scripts used to simulate, download, clean, test data. Also contain analysis data and data modeling.
 
 ## Statement on LLM usage
+Some of the code was written with the help of the ChatGPT-4o model, which also helped with language paraphrase, it have also provided suggestion on the title. other/llm_usage/usage.txt contains the entire chat history.
 
-Some of the code was written with the help of the ChatGPT-4o model, which also helped with language paraphrase. Other/llm_usage/usage.txt contains the entire chat history.
-
+## Acknowledgments
+We appreciate your time in reviewing this paper and would be grateful for any feedback or suggestions you may have.
