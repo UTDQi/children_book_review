@@ -43,7 +43,9 @@ The rise of user-generated content has transformed how consumers interact with m
 
 However, children's books, as a unique genre, present distinct dynamics in the realm of user-generated ratings and recommendation systems. Unlike adult literature, children rarely contribute directly to ratings or reviews. Instead, parents, educators, and caregivers typically provide feedback. Which have made is difficult to create recommendation systems [@judgecover]. And since many reviewer are not direct reader of the book, we hypothesize their rating may subject to greater bias from first impression. 
 
-This paper aims to use simple linear regression models and fine-tuned pretrained transformer models, by analyzing children's book data from Goodreads[@goodreaddata1;@goodreaddata2], to uncover how much such first impression will influence the rating of a book. The study provides guidance for author and publishers to create attractive titles, identifies traits in children's book rating, which may be useful for designing recommendation systems. Where these recommendation systems, when it comes to children, may be difficult to create due to lack of user generated data, and will likely benefit from understanding provided by this study.
+The estimand of this study is the level of reader satisfaction with a book, as reflected by its average rating. Specifically, this paper aims to determine the extent to which first impressions influence overall satisfaction.
+
+This paper made use of simple linear regression models and fine-tuned pretrained transformer models, by analyzing children's book data from Goodreads[@goodreaddata1;@goodreaddata2], to uncover how much such first impression will influence the rating of a book. The study provides guidance for author and publishers to create attractive titles, identifies traits in children's book rating, which may be useful for designing recommendation systems. Where these recommendation systems, when it comes to children, may be difficult to create due to lack of user generated data, and will likely benefit from understanding provided by this study.
 
 As a result, we found that one may explain 7.94% variation in the data by title alone. This fact along with the significant F statistics of linear regression model, have reflected the small but clearly present influence of first impression on book ratings. We have develop theories, by looking at our model output and relating to relevant literature, that as a sign of excitement and celebration, exclamation marks can provide a positive first impression and improve rating. We also note the influence of number of pages and review to rating ratio on average rating, and considered possible causation. 
 
@@ -58,7 +60,9 @@ We will be using the children's book data from goodreads.com, collected in late 
 The children's book dataset contains 124,082 books. After removing books that lacks the requires information, or that have incorrect entries easily identifiable(such as having June 31 as date), we have selected 65,118 books for analysis. The justification and risks of such selection will be discussed in [Discussion](#).
 
 ## Data Measurement
-Goodreads is an American book recommendation and social networking platform. Its primary purpose is to allow users to catalog their books, keep track of their reading progress, share reviews, and engage in discussions about literature. The included books are mainly in English, with some books in other languages available. Any registered user on Goodreads may give rating to any book, the rating comes in integers from 1 to 5, with no half-star option. Along with a rating, user also may write text reviews for the book, which may be seen by other users. 
+Goodreads is an American book recommendation and social networking platform. Its primary purpose is to allow users to catalog their books, keep track of their reading progress, share reviews, and engage in discussions about literature. The included books are mainly in English, with some books in other languages available. Any registered user on Goodreads may give rating to any book, the rating comes in integers from 1 to 5, with no half-star option. Along with a rating, user also may write text reviews for the book, which may be seen by other users. Descriptions of a book were updated by volunteer and staffs that maintains the website, while the rating contents are user generated.
+
+One issue this may raise is as each user has different understand of rating, the aggregate effect may lower the effectiveness of rating's role as a estimand for satisfaction. 
 
 The data collection was done through a web-scarping on contents available for any user[@goodreaddata1;@goodreaddata2]. 
 
@@ -70,7 +74,7 @@ For this study, we intend to use average rating as an estimand, and select predi
 
 ```{r}
 #| label: fig-ratingoverview
-#| fig-cap: Histogram on average rating
+#| fig-cap: Distribution of average rating
 #| include: true
 #| echo: false
 #| warning: false
@@ -79,7 +83,6 @@ For this study, we intend to use average rating as an estimand, and select predi
 ggplot(book_data, aes(x = as.numeric(average_rating))) + 
   geom_histogram(binwidth = 0.1, fill = "skyblue", color = "black", alpha = 0.7) +
   labs(
-    title = "Histogram of Average Ratings",
     x = "Average Rating",
     y = "Count(Books)"
   ) +
@@ -154,7 +157,7 @@ Number of text reviews (`text_reviews_count`) is the number of written text revi
 
 ```{r}
 #| label: fig-textreview
-#| fig-cap: Histogram on Number of Text Review
+#| fig-cap: Distribution of Number of Text Review
 #| include: true
 #| echo: false
 #| warning: false
@@ -163,7 +166,6 @@ Number of text reviews (`text_reviews_count`) is the number of written text revi
 ggplot(book_data, aes(x = as.numeric(text_reviews_count))) + 
   geom_histogram(binwidth = 0.1, fill = "skyblue", color = "black", alpha = 0.3) +
   labs(
-    title = "Histogram of Number of Text Review",
     x = "Number of Text Review",
     y = "Books(Log Scale)"
   ) + 
@@ -177,7 +179,7 @@ Text Reviews To Rating Ratio (`text_reviews_ratio`) is the ratio between number 
 
 ```{r}
 #| label: fig-textreviewratio
-#| fig-cap: Histogram on Ratio of Text Review
+#| fig-cap: Dirtribution of the Ratio of Text Review
 #| include: true
 #| echo: false
 #| warning: false
@@ -199,7 +201,7 @@ Number of Pages (`num_pages`) is the sometimes more notable than the title of th
 
 ```{r}
 #| label: fig-num_pages_overview
-#| fig-cap: Histogram on Ratio of Text Review
+#| fig-cap: Distribution of number of pages
 #| include: true
 #| echo: false
 #| warning: false
@@ -364,7 +366,7 @@ Books with more pages tend to have slightly higher average ratings. This suggest
 There is a positive relationship between the number of text reviews and the average rating, meaning that books with more reviews are likely to have higher ratings. Which may be explained by that social proof or engagement through reviews influences ratings positively.
 
 #### Text Reviews Ratio
-For each 1% increase in the ratio of text reviews to total reviews, the average rating increases by 0.0763.
+For each 1% increase in the ratio of text reviews to total reviews, the average rating increases by 0.0801.
 This is one of the most influential variables in the model. Books that have a higher ratio of text reviews and more detailed feedback from readers tend to receive significantly higher ratings. Indicating that detailed text-based reviews are more strongly associated with higher ratings than numerical ratings. We could also explain association by the positive impression created through higher engagement. 
 
 #### Publication Day in the Year
