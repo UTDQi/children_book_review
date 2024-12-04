@@ -5,7 +5,7 @@
 # Contact: david.qi@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: The `tidyverse` package must be installed
-# Any other information needed? Make sure you are in the `starter_folder` rproj
+# Any other information needed? Make sure you are in the correct r project
 
 
 #### Workspace setup ####
