@@ -39,7 +39,7 @@ book_data =book_data %>% mutate( publication_day_in_year =   as.integer(format(a
 
 
 # Introduction {#sec-intro}
-The rise of user-generated content has transformed how consumers interact with media, especially when it come to book ratings. These ratings serve as an indirect reflection of a book's quality and readers' perceptions, serving as one of the few pieces of information that help potential readers to form initial impressions. As they play a crucial role in guiding decisions, consequently, it has become standard practice to use book ratings as a predictor variable in recommendation systems, serving as a key indicator of how much a reader enjoys a book. 
+The rise of user-generated content has transformed how consumers interact with media, especially when it come to book ratings. These ratings serve as an indirect reflection of a book's quality and readers' perceptions, serving as one of the few pieces of information that help potential readers to form initial impressions. As they play a irreplaceable role in guiding decisions, consequently, it has become standard practice to use book ratings as a predictor variable in recommendation systems, serving as a key indicator of how much a reader enjoys a book. 
 
 However, children's books, as a unique genre, present distinct dynamics in the realm of user-generated ratings and recommendation systems. Unlike adult literature, children rarely contribute directly to ratings or reviews. Instead, parents, educators, and caregivers typically provide feedback. Which have made is difficult to create recommendation systems [@judgecover]. And since many reviewer are not direct reader of the book, we hypothesize their rating may subject to greater bias from first impression. 
 
@@ -457,7 +457,7 @@ For adults, the "reading practices" section will be replaces by a section collec
 
 
 ## Ethical Considerations
-As we are interviewing children, ensuring the ethical integrity of the survey is crucial.The following considerations are taken into account:
+As we are interviewing children, we must ensure the ethical integrity of the survey. The following considerations are taken into account:
 
 1. **Informed Consent**:  
    - Both parents/guardians and children must provide informed consent before participating.
@@ -480,7 +480,7 @@ As we are interviewing children, ensuring the ethical integrity of the survey is
 
 By addressing these ethical considerations, the survey ensures the protection and well-being of participants while maintaining the integrity and reliability of the research findings.
 
-A sample survey can be found at: [Link](https://docs.google.com/forms/d/e/1FAIpQLSeIMsn9aL4JJsZOZtFYFiE_HoZZbaU_g5v84bLXZpoZKjtNpQ/viewform?usp=sf_link). Thank @stantcheva2023surveys and @chen2018methods's paper in providing valuable guidance in creating survey.
+A sample survey can be found at: [Link](https://docs.google.com/forms/d/e/1FAIpQLSeIMsn9aL4JJsZOZtFYFiE_HoZZbaU_g5v84bLXZpoZKjtNpQ/viewform?usp=sf_link). Thank @stantcheva2023surveys and @chen2018methods's paper in providing guidance in creating survey.
 
 
 # Appendix 2: Model diagnostics {#appendix2}
