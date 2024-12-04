@@ -175,7 +175,7 @@ ggplot(book_data, aes(x = as.numeric(text_reviews_count))) +
 ```
 
 ### Text Reviews To Rating Ratio
-Text Reviews To Rating Ratio (`text_reviews_ratio`) is the ratio between number of text review and number of ratings. It serves as a measurement of reader engagement and the atmosphere of the reader community. Which can have substantial impact on one's impression of a book.  [@fig-textreviewratio] shows the distribution of books with different number of this ratio, showing readers have different level of engagement for different books. Note this variable displays a weak correlation(correlation = 0.2112446) with year of publication, including this variable in the model will minimize the effect of year of publication in the linear regression model. However we have included both variables in consideration for interpretiblity. 
+Text Reviews To Rating Ratio (`text_reviews_ratio`) is the ratio between number of text review and number of ratings. It serves as a measurement of reader engagement and the atmosphere of the reader community. Which can have substantial impact on one's impression of a book.  [@fig-textreviewratio] shows the distribution of books with different number of this ratio, showing readers have different level of engagement for different books. Note this variable displays a weak correlation of 0.211 with year of publication, including this variable in the model will minimize the effect of year of publication in the linear regression model. However we have included both variables in consideration for interpretiblity. 
 
 ```{r}
 #| label: fig-textreviewratio
@@ -194,7 +194,7 @@ ggplot(book_data, aes(x = as.numeric(text_reviews_ratio))) +
   theme_minimal()
 ```
 ### Title
-Title (`title`) is the most visible trait on the front cover of a book. The wording of the title will directly shape one's first impression of the book, and directly determines if one have interest in the book. 
+Title (`title`) is the most visible trait on the front cover of a book. The wording of the title will directly shape one's first impression of the book, and directly determines if one have interest in the book. Which have made it very suitable for our propose, as it may be the variable that has the greatest impact on first impression. However, as a text variable, it may not be easy and require complicated model to process title data. 
 
 ### Number of pages
 Number of Pages (`num_pages`) is the sometimes more notable than the title of the book, one often realize how thick a book is without knowing the title. If we want to evaluate the impact of first impression on book reviews, number of pages is an important factor to take into consideration. [@fig-num_pages_overview] shows that most books in the dataset have a low number of pages, as the number of pages increases, the frequency of books with higher page counts drops off significantly. Agreeing with our impression of children;s book.
@@ -424,7 +424,7 @@ We want to validate and measure the actual effects of three of our main findings
 3. High level of community engagement create positive attitude toward the book.
 
 ## Sampling Approach
-Keep in mind that this survey aims to be targets to collect more data one a particularly hard-to-reach group: children. While we also aims at identifying the part of rating pattern in children that are due to adults. Quota sampling is quite suitable for this circumstance, which enables us to place more effort on the groups we want to focus on[@chen2018methods].
+Keep in mind that this survey aims to be targets to collect more data one a particularly hard-to-reach group: children. While we also aims at identifying the part of rating pattern in children that are due to adults. Quota sampling is quite suitable for this circumstance, which enables us to place more effort on the hard-to-reach groups we want to focus on[@chen2018methods].
 
 ## Stratified Quotas
 We will use the age groups used by @judgecover to test the alignment of results, which are under 5, 6 to 8, and 9 to 11.The quota should be evenly spread geographically in the United States, and equal in age group. For a total of 500 participants, we will recruit 100 participants from each age group, evenly spread geographically. And the rest 100 is left to parents and teachers. The sample will be offline, since we do not expect to reach our target population online. 
@@ -480,7 +480,7 @@ As we are interviewing children, ensuring the ethical integrity of the survey is
 
 By addressing these ethical considerations, the survey ensures the protection and well-being of participants while maintaining the integrity and reliability of the research findings.
 
-A sample survey can be found at: [Link](https://docs.google.com/forms/d/e/1FAIpQLSeIMsn9aL4JJsZOZtFYFiE_HoZZbaU_g5v84bLXZpoZKjtNpQ/viewform?usp=sf_link).Thank @stantcheva2023surveys and @chen2018methods's paper in providing valuable guidance in creating survey.
+A sample survey can be found at: [Link](https://docs.google.com/forms/d/e/1FAIpQLSeIMsn9aL4JJsZOZtFYFiE_HoZZbaU_g5v84bLXZpoZKjtNpQ/viewform?usp=sf_link). Thank @stantcheva2023surveys and @chen2018methods's paper in providing valuable guidance in creating survey.
 
 
 # Appendix 2: Model diagnostics {#appendix2}
