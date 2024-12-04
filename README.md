@@ -1,7 +1,7 @@
 # Do We Judge Children's Books by Their Covers? Exploring Title, Exclamation Marks, and Reviewer Bias
 
 ## Overview
-This paper using data from Goodreads to examine the impact of first impressions on children's book ratings, focusing on how attributes such title, page count, and review count influence ratings.  Using both simple linear regression and fine-tuned transformer models ([model card](utdqi.github.io/children_book_review/), we found that book titles alone explained 7.94% of the variation in ratings, indicating the significance of first impressions. This study provide support for previous studies in concluding that children may favor the theme of excitement and celebration, which are useful in building recommendation system and selecting optimal titles.
+This paper using data from Goodreads to examine the impact of first impressions on children's book ratings, focusing on how attributes such title, page count, and review count influence ratings.  Using both simple linear regression and fine-tuned transformer models ([model card](https://utdqi.github.io/children_book_review/), we found that book titles alone explained 7.94% of the variation in ratings, indicating the significance of first impressions. This study provide support for previous studies in concluding that children may favor the theme of excitement and celebration, which are useful in building recommendation system and selecting optimal titles.
 
 ## File Structure
 
