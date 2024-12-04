@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Do We Judge Children’s Books by Their Covers?",
-    "section": "",
-    "text": "This page is for publishing the paper “Do We Judge Children’s Books by Their Covers? Exploring Title, Exclamation Marks, and Reviewer Bias”\nThe full paper can be downloaded here"
-  },
-  {
     "objectID": "Model_Card.html",
     "href": "Model_Card.html",
     "title": "Do We Judge Children's Books by Their Covers? ",
@@ -35,31 +28,17 @@
     "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "index.html#overview",
-    "href": "index.html#overview",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "Do We Judge Children’s Books by Their Covers?",
     "section": "",
     "text": "This page is for publishing the paper “Do We Judge Children’s Books by Their Covers? Exploring Title, Exclamation Marks, and Reviewer Bias”\nThe full paper can be downloaded here"
   },
   {
-    "objectID": "index.html#file-structure",
-    "href": "index.html#file-structure",
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
     "title": "Do We Judge Children’s Books by Their Covers?",
-    "section": "File Structure",
-    "text": "File Structure\nThe repo is structured as:\n\ndata/00-simulated_data contains the simulated dataset.\ndata/01-raw_data contains raw data downloaded from https://mengtingwan.github.io/data/goodreads (not uploaded due to licensing concerns, but can be dowloaded using 02-download_clean_model_data by user)\ndata/02-analysis_data contains the cleaned dataset that was constructed.\nmodels contains the rds file for linear regression and transformer model. (Transformer model is too large(&gt;100m) to be uploaded, the code in 02-download_clean_model_data is deterministic, running this code will produce the same model)\nother contains details about LLM chat interactions, and sketches.\npaper includes the paper’s PDF and the files used to create it, such as the Quarto manuscript and reference bibliography file.\nscripts contains the R scripts used to simulate, download, clean, test data. Also contain analysis data and data modeling."
-  },
-  {
-    "objectID": "index.html#statement-on-llm-usage",
-    "href": "index.html#statement-on-llm-usage",
-    "title": "Do We Judge Children’s Books by Their Covers?",
-    "section": "Statement on LLM usage",
-    "text": "Statement on LLM usage\nSome of the code was written with the help of the ChatGPT-4o model, which also helped with language paraphrase. Other/llm_usage/usage.txt contains the entire chat history."
-  },
-  {
-    "objectID": "index.html#repository",
-    "href": "index.html#repository",
-    "title": "Do We Judge Children’s Books by Their Covers?",
-    "section": "Repository",
-    "text": "Repository\nRepository is located at https://github.com/UTDQi/children_book_review."
+    "section": "",
+    "text": "This page is for publishing the paper “Do We Judge Children’s Books by Their Covers? Exploring Title, Exclamation Marks, and Reviewer Bias”\nThe full paper can be downloaded here"
   }
 ]
