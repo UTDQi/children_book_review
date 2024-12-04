@@ -1,7 +1,7 @@
 # Do We Judge Children's Books by Their Covers? Exploring Title, Exclamation Marks, and Reviewer Bias
 
 ## Overview
-This repository is implemented by R and python, including all necessary code, data, model and analysis used to analysis children's book rating from goodreads.com. 
+This paper using data from Goodreads to examines the impact of first impressions on children's book ratings, focusing on how attributes such title, page count, and review count influence ratings.  Using both simple linear regression and fine-tuned transformer models([model card](utdqi.github.io/children_book_review/), we found that book titles alone explained 7.94% of the variation in ratings, indicating the significance of first impressions. This study provide support for previous studies in concluding that children may favor the theme of excitement and celebration, which are useful in building recommendation system and selecting optimal titles.
 
 ## File Structure
 
@@ -12,6 +12,7 @@ The repo is structured as:
 -   `data/02-analysis_data` contains the cleaned dataset that was constructed.
 -   `models` contains the rds file for linear regression and transformer model. (Transformer model is too large(>100m) to be uploaded, the code in 02-download_clean_model_data is deterministic, running this code will produce the same model)
 -   `other` contains details about LLM chat interactions, and sketches.
+-   `docs` contains required files for website publication
 -   `paper` includes the paper's PDF and the files used to create it, such as the Quarto manuscript and reference bibliography file. 
 -   `scripts` contains the R scripts used to simulate, download, clean, test data. Also contain analysis data and data modeling.
 
